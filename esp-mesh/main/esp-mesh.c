@@ -16,6 +16,7 @@
 #include "esp_now.h"
 #include "esp_sleep.h"
 #include "esp_mac.h"
+#include "esp_random.h"
 
 #include "node_data.h"
 
@@ -46,10 +47,10 @@ node_data_t node_data;
 
 // ESP-NOW recieve callback
 static void espnow_recv_cb(const esp_now_recv_info_t *recv_info, const uint8_t *data, int len) {
-    node_data_t *recieved_data = (node_data_t *)data;
+    node_data_t *received_data = (node_data_t *)data;
     if (xSemaphoreTake(xMutex, portMAX_DELAY)) {
-        node_data.value += recieved_data->value;
-        node_data.weight += recieved_data->weight;
+        node_data.value += received_data->value;
+        node_data.weight += received_data->weight;
         ESP_LOGI(TAG, "Received from" MACSTR ". Ratio %.3f", MAC2STR(recv_info->src_addr), node_data.value / node_data.weight);
         xSemaphoreGive(xMutex);
     }
@@ -73,16 +74,14 @@ void espnow_init(void) {
     ESP_ERROR_CHECK(esp_now_init());
     // Add espnow recive callback
     ESP_ERROR_CHECK(esp_now_register_recv_cb(espnow_recv_cb));
-    // Get this device's mac addr
-    esp_read_mac(my_mac, ESP_MAC_WIFI_STA);
-    // Add the rest of the peers
+    // Add the peers
     esp_now_peer_info_t peer = {
         .channel = 8,
         .ifidx = WIFI_IF_STA,
         .encrypt = false
     };
     for (int i = 0; i < NUM_NODES; i++) {
-        // Only add the peer if it's NOT me
+        // Only add peers that are not "you"
         if (memcmp(my_mac, nodes_mac[i], 6) != 0) {
             memcpy(peer.peer_addr, nodes_mac[i], 6);
             ESP_ERROR_CHECK(esp_now_add_peer(&peer));
@@ -93,23 +92,24 @@ void espnow_init(void) {
 
 // Tx task
 void pushSum_Tx_Task(void *pvParameters) {
-    vTaskDelay(20000 / portTICK_PERIOD_MS);
+    vTaskDelay(20000 / portTICK_PERIOD_MS); // initial 20s wait
     while(1) {
-        for (int i = 0; i < NUM_NODES; i++) {
-            if (memcmp(my_mac, nodes_mac[i], 6) != 0) {
-                if (xSemaphoreTake(xMutex, portMAX_DELAY)) {
-                    node_data.value /= 2;
-                    node_data.weight /= 2;
-                    esp_err_t ret = esp_now_send(nodes_mac[i], (uint8_t *)&node_data, sizeof(node_data_t));
-                    if (ret != ESP_OK) {
-                        node_data.value *= 2;
-                        node_data.weight *= 2;
-                    }
-                    xSemaphoreGive(xMutex);
-                }
-            }
+        // At each iteration, choose a random node to send msg to (gossip)
+        uint32_t rnd_peer = esp_random() % NUM_NODES; // this results in a random integer between 0 and NUM_NODES-1
+        while (memcmp(my_mac, nodes_mac[rnd_peer], 6) == 0) {
+            rnd_peer = esp_random() % NUM_NODES;
         }
-        vTaskDelay(2000 / portTICK_PERIOD_MS);
+        if (xSemaphoreTake(xMutex, portMAX_DELAY)) {
+            node_data.value /= 2;
+            node_data.weight /= 2;
+            esp_err_t ret = esp_now_send(nodes_mac[rnd_peer], (uint8_t *)&node_data, sizeof(node_data_t));
+            if (ret != ESP_OK) {
+                    node_data.value *= 2;
+                    node_data.weight *= 2;
+            }
+            xSemaphoreGive(xMutex);
+        }
+        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
@@ -124,9 +124,11 @@ void app_main(void)
     ESP_ERROR_CHECK(ret);
 
     wifi_init();
-    espnow_init();
 
     xMutex = xSemaphoreCreateMutex();
+
+    // Get this device's mac addr
+    esp_read_mac(my_mac, ESP_MAC_WIFI_STA);
 
     // Set diff values based on device MAC
     if (my_mac[5] == 0x40) {
@@ -142,6 +144,8 @@ void app_main(void)
         node_data.value = 50.0;
     }
     node_data.weight = NODE_WEIGHT; // initial weight of 1.0
+
+    espnow_init();
 
     // create Tx task
     xTaskCreate(pushSum_Tx_Task, "pushSum_Tx_Task", 8152, NULL, 5, NULL);
