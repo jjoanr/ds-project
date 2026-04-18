@@ -26,6 +26,8 @@ static const char *TAG = "main";
 
 #define NUM_NODES 4
 #define NODE_WEIGHT 1.0
+#define MIN_VALUE 10.0 
+#define MAX_VALUE 100.0
 
 /*
 c8:f0:9e:2b:e1:50
@@ -103,13 +105,17 @@ void pushSum_Tx_Task(void *pvParameters) {
             node_data.value /= 2;
             node_data.weight /= 2;
             esp_err_t ret = esp_now_send(nodes_mac[rnd_peer], (uint8_t *)&node_data, sizeof(node_data_t));
+	    /*
             if (ret != ESP_OK) {
                     node_data.value *= 2;
                     node_data.weight *= 2;
             }
+	    */
             xSemaphoreGive(xMutex);
         }
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
+	// random delay between 800 ms and 1200 ms
+	uint32_t rnd_delay = 800 + (esp_random() % 401);	
+        vTaskDelay(rnd_delay / portTICK_PERIOD_MS);
     }
 }
 
@@ -130,19 +136,9 @@ void app_main(void)
     // Get this device's mac addr
     esp_read_mac(my_mac, ESP_MAC_WIFI_STA);
 
-    // Set diff values based on device MAC
-    if (my_mac[5] == 0x40) {
-        node_data.value = 10.0;
-    }
-    if (my_mac[5] == 0x50) {
-        node_data.value = 30.0;
-    }
-    if (my_mac[5] == 0x70) {
-        node_data.value = 5.0;
-    }
-    if (my_mac[5] == 0x80) {
-        node_data.value = 50.0;
-    }
+    uint32_t int_min = (uint32_t)MIN_VALUE;
+    uint32_t int_max = (uint32_t)MAX_VALUE;
+    node_data.value = (float)(int_min + (esp_random() % (int_max - int_min + 1)));
     node_data.weight = NODE_WEIGHT; // initial weight of 1.0
 
     espnow_init();
