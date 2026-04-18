@@ -1,4 +1,8 @@
 build/
 .cache/
 sdkconfig.old
+.venv/
+venv/
+.cache/
+cache/
 
