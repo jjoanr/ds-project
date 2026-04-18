@@ -6,18 +6,16 @@ DATA_FILE = 'push_sum_naive_experiments.csv'
 try:
     df = pd.read_csv(DATA_FILE)
 except FileNotFoundError:
-    print(f"Error: Could not find '{DATA_FILE}'. Ensure it is in the same directory.")
+    print(f"Error: Could not find '{DATA_FILE}'. Make sure it is in the same directory.")
     exit()
 
-print("--- Aligned Asynchronous Push-Sum Analysis ---\n")
-
-# 1. Generate Summary Statistics
+# Summary Statistics
 summary = df.groupby(['num_nodes', 'packet_loss']).agg(
     convergence_rate=('converged', 'mean'),
     avg_error=('mean_relative_error', 'mean'),
     success_within_5pct=('within_5_percent_error', 'mean'),
     avg_mass_loss_pct=('mass_loss_pct', 'mean'),
-    avg_traffic=('total_unicasts', 'mean') # <--- ADDED TRAFFIC
+    avg_traffic=('total_unicasts', 'mean')
 ).reset_index()
 
 # Filter for converged runs only for time/rounds stats
@@ -30,7 +28,7 @@ time_rounds_summary = converged_only.groupby(['num_nodes', 'packet_loss']).agg(
 # Merge back into the main summary
 summary = pd.merge(summary, time_rounds_summary, on=['num_nodes', 'packet_loss'], how='left')
 
-# Format columns for console output
+# Format columns
 print_summary = summary.copy()
 print_summary['conv_rate'] = (print_summary['convergence_rate'] * 100).round(1).astype(str) + '%'
 print_summary['reliability'] = (print_summary['success_within_5pct'] * 100).round(1).astype(str) + '%'
@@ -43,9 +41,9 @@ print(print_summary[cols_to_show].to_string(index=False))
 
 print("\nGenerating separate plots...")
 
-# 2. Plotting Setup
+# Plotting
 node_sizes = sorted(df['num_nodes'].unique())
-colors = ['b', 'g', 'r', 'c', 'm', 'gray', 'k'] # Added extra colors just in case
+colors = ['b', 'g', 'r', 'c', 'm', 'gray', 'k']
 
 # ---------------------------------------------------------
 # Plot A: Average Time to Converge (Seconds) vs Packet Loss
@@ -113,7 +111,7 @@ for idx, size in enumerate(node_sizes):
 plt.axhline(y=0.0, color='black', linestyle=':', label='Perfect Conservation')
 plt.xlabel('Packet Loss (%)')
 plt.ylabel('Mass Conservation Error (%)')
-plt.ylim(-5, 105) # Naive only loses mass, so it goes from 0 up to 100
+plt.ylim(-5, 105) 
 plt.grid(True, linestyle='--', alpha=0.6)
 plt.legend()
 plt.tight_layout()
@@ -121,7 +119,7 @@ plt.savefig('push_sum_naive_mass_error.png', dpi=300)
 plt.close()
 
 # ---------------------------------------------------------
-# Plot E: Network Traffic Generated vs Packet Loss (NAIVE)
+# Plot E: Network Traffic Generated vs Packet Loss
 # ---------------------------------------------------------
 plt.figure(figsize=(8, 6))
 for idx, size in enumerate(node_sizes):
@@ -133,9 +131,9 @@ plt.xlabel('Packet Loss (%)')
 plt.ylabel('Average Messages per Node')
 plt.grid(True, linestyle='--', alpha=0.6)
 plt.legend()
-plt.ylim(0, 150) # Locked to match the max of the Robust script 
+plt.ylim(0, 150)
 plt.tight_layout()
 plt.savefig('push_sum_naive_traffic.png', dpi=300)
 plt.close()
 
-print("All 5 plots saved successfully in the current directory.")
+print("Plots saved successfully.")

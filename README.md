@@ -3,16 +3,10 @@
 ## Project structure
 ```
 .
-├── esp-mesh/                       # ESP-IDF firmware
+├── esp-mesh                        # ESP-IDF firmware
+├── simulation/                     # DES simulation of the algorithms
 ├── docs/                           # Project documentation
-│   ├── proposal.pdf                # Project proposal presentation
-│   ├── intermediate-results.pdf    # Intermediate results presentation
-│   ├── final-presentation.pdf      # Final presentation
-│   ├── technical-report.pdf        # Technical report
-│   ├── poster.pdf                  # Project poster
-│   ├── references.md               # Related work / bibliography
-│   └── figures/                    # Figures and diagrams
-└── README.md
+└── results/                        # Results of the experiments
 ```
 
 ## Methodology

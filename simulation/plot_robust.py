@@ -9,15 +9,13 @@ except FileNotFoundError:
     print(f"Error: Could not find '{DATA_FILE}'. Ensure it is in the same directory.")
     exit()
 
-print("--- Robust (ACK-Based) Push-Sum Analysis ---\n")
-
-# 1. Generate Summary Statistics
+# Summary Statistics
 summary = df.groupby(['num_nodes', 'packet_loss']).agg(
     convergence_rate=('converged', 'mean'),
     avg_error=('mean_relative_error', 'mean'),
     success_within_5pct=('within_5_percent_error', 'mean'),
     avg_mass_loss_pct=('mass_loss_pct', 'mean'),
-    avg_traffic=('total_messages', 'mean') # Track the traffic cost
+    avg_traffic=('total_messages', 'mean')
 ).reset_index()
 
 # Filter for converged runs only for time/rounds stats
@@ -30,7 +28,7 @@ time_rounds_summary = converged_only.groupby(['num_nodes', 'packet_loss']).agg(
 # Merge back into the main summary
 summary = pd.merge(summary, time_rounds_summary, on=['num_nodes', 'packet_loss'], how='left')
 
-# Format columns for console output
+# Format columns
 print_summary = summary.copy()
 print_summary['conv_rate'] = (print_summary['convergence_rate'] * 100).round(1).astype(str) + '%'
 print_summary['reliability'] = (print_summary['success_within_5pct'] * 100).round(1).astype(str) + '%'
@@ -44,7 +42,7 @@ print(print_summary[cols_to_show].to_string(index=False))
 
 print("\nGenerating separate plots...")
 
-# 2. Plotting Setup
+# Plotting
 node_sizes = sorted(df['num_nodes'].unique())
 colors = ['b', 'g', 'r', 'c', 'm', 'gray', 'k'] 
 
@@ -78,7 +76,7 @@ plt.axhline(y=5.0, color='black', linestyle=':', label='5% Threshold')
 plt.xlabel('Packet Loss (%)')
 plt.ylabel('Mean Relative Error (%)')
 plt.grid(True, which="both", linestyle='--', alpha=0.4)
-plt.ylim(0, 10) # Locked axis for comparison with Naive
+plt.ylim(0, 10)
 plt.legend()
 plt.tight_layout()
 plt.savefig('push_sum_robust_accuracy.png', dpi=300)
@@ -114,7 +112,7 @@ for idx, size in enumerate(node_sizes):
 plt.xlabel('Packet Loss (%)')
 plt.ylabel('Average Messages per Node')
 plt.grid(True, linestyle='--', alpha=0.6)
-plt.ylim(0, 150) # Locked axis for comparison with Naive
+plt.ylim(0, 150)
 plt.legend()
 plt.tight_layout()
 plt.savefig('push_sum_robust_traffic.png', dpi=300)
@@ -132,11 +130,10 @@ for idx, size in enumerate(node_sizes):
 plt.axhline(y=0.0, color='black', linestyle=':', label='Perfect Conservation')
 plt.xlabel('Packet Loss (%)')
 plt.ylabel('Mass Conservation Error (%)')
-# Not locking the Y-axis here so you can clearly see the negative spikes (duplication)
 plt.grid(True, linestyle='--', alpha=0.6)
 plt.legend()
 plt.tight_layout()
 plt.savefig('push_sum_robust_mass_deviation.png', dpi=300)
 plt.close()
 
-print("All 5 robust plots saved successfully in the current directory.")
+print("Plots saved successfully.")
