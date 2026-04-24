@@ -3,25 +3,29 @@
 ## Project structure
 ```
 .
-├── esp-mesh                        # ESP-IDF firmware
+├── esp-mesh/                       # ESP-IDF firmware
 ├── simulation/                     # DES simulation of the algorithms
 ├── docs/                           # Project documentation
 └── results/                        # Results of the experiments
 ```
 
 ## Methodology
-The goal of this project is to evaluate two versions of a simple average consensus protocol on an ESP32 mesh network. The protocol itself is known as Push-Sum (Kempe et al., 2003), and it was designed to obtain the average of a value held by the nodes in a fully decentralized and asynchronous network. The protocol is proved to converge on the true average value under ideal network conditions (i.e. no packet loss, no malfunctioning nodes), but the most basic version of it fails to produce correct consensus on unreliable networks. That is why a robust version of the protocol is implemented, using acknowledgments of the packets sent before updating the local state, and using sequence numbers, retries and timeouts. Obviously, trying to make a robust version of the protocol increases the complexity and network traffic. The Research Question is to answer at which point does the error in the consensed result becomes unacceptable in an unreliable network, and therefore the robust version is justified, with its implications in performance.
+The goal of this project is to evaluate two versions of a simple average consensus protocol on an ESP32 mesh network. The protocol itself is known as Push-Sum (Kempe et al., 2003), and it was designed to obtain the average of a value held by the nodes in a fully decentralized and asynchronous network. While Push-Sum is proven to converge on the true average under ideal network conditions (no packet loss, no malfunctioning nodes), a naive implementation fails to achieve correct consensus on unreliable networks. To address this, a robust version (Flow-Updating / Flow Gossip) is implemented, which tracks the cumulative "mass" sent over the network for each peer (Almeida et al., 2011). Naturally, ensuring robust mass conservation increases both algorithmic complexity and network traffic.
+
+**Research Question**: At what point does the error in the consensus result become unacceptable in an unreliable network, thereby justifying the performance overhead and complexity of the robust version?
 
 To answer this, the following tasks are done:
-- Implement a Discrete-Event Simulation engine of the algorithm, for both the naive and robust versions. With this, we can run experiments for much larger networks.
-- Implement the algorithms for ESP32, which will form a mesh network over ESP-IDF. The size of the network is limited to the number of available development boards, so this experiment is not to test the algorithms on large networks, but to evaluate it in real hardware and compare it with the simulation results.
-- For both the simulation and the test-bed, log the following metrics for different percentages of packet loss: Mean Absolute Error (MAE) bewtween the consensed value and the true average and total traffic generated (packets transmitted).
-- To answer the Research Question, an acceptable deviation from the true average has to be defined. For our case, since we are dealing with a network of IoT devices which are not necessarily concerned about infimum error in the results, a 5 % deviation from the true average will be considered acceptable, and above that, unacceptable.
+- Discrete-Event Simulation (DES): Implement a simulation engine for both the naive and robust algorithms. This allows us to run experiments and observe behavior at scale across much larger networks.
+- Hardware Test-Bed: Implement the algorithms on ESP32 microcontrollers forming a mesh network using ESP-IDF. Because the physical network size is limited by the number of available development boards, this test-bed serves to evaluate real-world hardware behavior and validate our simulation results rather than testing scalability.
+- Metric Logging: For both the simulation and the test-bed, log key metrics across varying percentages of packet loss. Primary metrics include Mean Absolute Error (MAE) between the consensus value and the true average, as well as total traffic generated (packets transmitted).
 
-From the simulation results, the idea is to compare the naive and robust versions with respect to:
-- Accuracy: Mean error from the true mean.
-- Reliability: Percentage of runs where the error stays < 5 %. A 90 % reliability is assumed to be good (9 of every 10 executions, the algorithm stays below 5 % error).
-- Traffic generated: Total number of packets transmitted through the network.
-- Mass conservation: Mass is the total sum of the values in the network. When a packet is lost but the sender updated its local state, that "mass" is lost.
+**Experimental Evaluation**
 
-## Results
+To answer the research question, we must define an "acceptable" deviation. Because we are targeting IoT ecosystems where infinitesimal precision is not strictly required, a 5% deviation from the true average is considered acceptable.
+From the simulation and hardware results, we compare the naive and robust implementations against the following criteria:
+
+- Accuracy: Mean Absolute Error (MAE) from the true network average.
+- Reliability: The percentage of runs where the final error remains below the 5% threshold. A 90% reliability rate (9 out of 10 executions staying below 5% error) is considered successful.
+- Network Traffic: The total number of packets transmitted through the network to reach consensus.
+- Mass Conservation: Tracking the total sum of values in the network. (In the naive approach, when a packet is lost after the sender has updated its local state, that "mass" leaks from the system).
+

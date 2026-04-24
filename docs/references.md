@@ -1,6 +1,5 @@
-- Gerencsér, B., & Hendrickx, J. M. (2019). Push-Sum With Transmission Failures. 
-  IEEE Transactions on Automatic Control, 64(3), 1019–1033. https://doi.org/10.1109/TAC.2018.2836861
-
-- Tsianos, K. I., Lawlor, S., & Rabbat, M. G. (2012). Push-Sum Distributed Dual Averaging for convex optimization. 
-  2012 IEEE 51st IEEE Conference on Decision and Control (CDC), 5453–5458. https://doi.org/10.1109/CDC.2012.6426375
-
+Almeida, P. S., Baquero, C., Farach-Colton, M., Jesus, P., & Mosteiro, M. A. (2011). Fault-Tolerant Aggregation: Flow-Updating Meets Mass-Distribution (Vol. 7109, pp. 513–527). https://doi.org/10.1007/978-3-642-25873-2_35
+Charalambous, T., Domínguez-García, A. D., & Hadjicostis, C. N. (2026). Robustified Distributed Average Consensus. In Encyclopedia of Systems and Control Engineering (pp. 151–163). Elsevier. https://doi.org/10.1016/B978-0-443-14081-5.00076-3
+Gerencsér, B., & Hendrickx, J. M. (2019). Push-Sum With Transmission Failures. IEEE Transactions on Automatic Control, 64(3), 1019–1033. https://doi.org/10.1109/TAC.2018.2836861
+Kempe, D., Dobra, A., & Gehrke, J. (2003). Gossip-based computation of aggregate information. 44th Annual IEEE Symposium on Foundations of Computer Science, 2003. Proceedings., 482–491. https://doi.org/10.1109/SFCS.2003.1238221
+Liang, Y., Sun, Y., Cao, X., & Shen, L. (2026). Stability and Generalization of Push-Sum Based Decentralized Optimization over Directed Graphs (arXiv:2602.20567). arXiv. https://doi.org/10.48550/arXiv.2602.20567
