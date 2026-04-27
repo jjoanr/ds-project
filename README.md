@@ -30,3 +30,18 @@ From the simulation and hardware results, we compare the naive and robust implem
 - Network Traffic: The total number of packets transmitted through the network to reach consensus.
 - Mass Conservation: Tracking the total sum of values in the network. (In the naive approach, when a packet is lost after the sender has updated its local state, that "mass" leaks from the system).
 
+## ESP32 Test-bed
+### Esp-idf firmware
+In the `esp-mesh/` directory you can find the esp-idf firmware to run the two versions of the Push-Sum algorithm in a fully connected mesh of ESP32. The steps to set it up are the following:
+
+1. In `main/esp-mesh.c` define the MAC addresses of all your ESP32 boards. Also configure the parameters `NUM_NODES`, `NODE_WEIGHT`, `PACKET_LOSS`, etc, depending on your goal.
+2. In `main/consensus.h` define ALGO_MODE_ROBUST to use the Robust (Flow-Updating) version of the algorithm, or comment out to use the Naive approach.
+3. Use at least esp-idf v5. Compile the firmware and flash to all your boards.
+
+```bash
+idf.py build
+idf.py flash --port /dev/ttyUSBX
+```
+
+### Python serial logger
+A serial logger is also available to monitor the algorithm execution. It can be found in `test-bed-scripts/automated_esp32_logging.py`. To use it, define the USB ports where the ESP32 boards are connected, the baudrate and the rest of the parameters. With the default configuration, the script will execute the algorithm 20 times (by resetting the boards at each experiment) and log the results in a csv. 

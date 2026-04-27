@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Configuration
-ESP32_PORTS     = ["/dev/ttyUSB0", "/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB3"]
+ESP32_PORTS     = ["/dev/ttyUSB4", "/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB3"]
 BAUD_RATE       = 115200
 TOLERANCE       = 1e-4
 REQUIRED_STABLE = 5
@@ -20,11 +20,11 @@ CHECK_INTERVAL  = 1.0
 NUM_RUNS        = 20
 INTER_RUN_DELAY = 5
 
-PACKET_LOSS_PCT = 0.0 
+PACKET_LOSS_PCT = 0.50
 
 OUTPUT_DIR = Path("logs")
 OUTPUT_DIR.mkdir(exist_ok=True)
-SUMMARY_FILE = OUTPUT_DIR / "naive_summary_0_loss.csv"
+SUMMARY_FILE = OUTPUT_DIR / "robust_summary_50_loss.csv"
 
 # Regex for parsing
 INIT_RE   = re.compile(r"INIT_STATE MAC=([0-9a-f:]+) VAL=([0-9.]+) WEIGHT=([0-9.]+)")
