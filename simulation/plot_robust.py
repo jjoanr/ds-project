@@ -109,5 +109,3 @@ plt.legend()
 plt.tight_layout()
 plt.savefig('push_sum_robust_mass_deviation.png', dpi=300)
 plt.close()
-
-print("Plots saved successfully.")

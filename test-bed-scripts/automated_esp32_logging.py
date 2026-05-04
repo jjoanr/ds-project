@@ -11,7 +11,7 @@ from datetime import datetime
 from pathlib import Path
 
 # Configuration
-ESP32_PORTS     = ["/dev/ttyUSB4", "/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB3"]
+ESP32_PORTS     = ["/dev/ttyUSB1", "/dev/ttyUSB2", "/dev/ttyUSB3", "/dev/ttyUSB4", "/dev/ttyUSB5", "/dev/ttyUSB6", "/dev/ttyUSB7", "/dev/ttyUSB8"]
 BAUD_RATE       = 115200
 TOLERANCE       = 1e-4
 REQUIRED_STABLE = 5

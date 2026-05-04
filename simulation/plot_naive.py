@@ -104,5 +104,3 @@ plt.legend()
 plt.tight_layout()
 plt.savefig('push_sum_naive_mass_loss.png', dpi=300)
 plt.close()
-
-print("All plots saved successfully.")

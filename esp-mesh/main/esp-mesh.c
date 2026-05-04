@@ -22,24 +22,40 @@
 
 static const char *TAG = "main";
 
-#define NUM_NODES 4
+// Config parameters
+#define NUM_NODES 8
+
 #define NODE_WEIGHT 1.0
 #define MIN_VALUE 10.0 
 #define MAX_VALUE 100.0
-#define PACKET_LOSS 0
+// Define packet loss (in %)
+// e.g. 10% packet loss -> PACKET_LOSS 10
+#define PACKET_LOSS 50
 
 /*
+// 4-node mesh
 c8:f0:9e:2b:e1:50
 54:43:b2:e6:50:40 **
 3c:e9:0e:08:ec:80
 c8:f0:9e:2c:10:70 **
+
+// 8-node mesh
+34:86:5d:fd:3a:38
+c8:f0:9e:a1:19:70
+e0:e2:e6:ac:97:dc
+a0:dd:6c:03:2f:88
 */
 
 uint8_t nodes_mac[NUM_NODES][6] = {
-    {0xc8, 0xf0, 0x9e, 0x2b, 0xe1, 0x50}, // Node 0
-    {0x54, 0x43, 0xb2, 0xe6, 0x50, 0x40}, // Node 1
-    {0x3c, 0xe9, 0x0e, 0x08, 0xec, 0x80}, // Node 2
-    {0xc8, 0xf0, 0x9e, 0x2c, 0x10, 0x70}  // Node 3
+    {0xc8, 0xf0, 0x9e, 0x2b, 0xe1, 0x50},  // Node 1
+    {0x54, 0x43, 0xb2, 0xe6, 0x50, 0x40},  // Node 2
+    {0x3c, 0xe9, 0x0e, 0x08, 0xec, 0x80},  // Node 3
+    {0xc8, 0xf0, 0x9e, 0x2c, 0x10, 0x70},  // Node 4
+
+    {0x34, 0x86, 0x5d, 0xfd, 0x3a, 0x38},  // Node 5
+    {0xc8, 0xf0, 0x9e, 0xa1, 0x19, 0x70},  // Node 6
+    {0xe0, 0xe2, 0xe6, 0xac, 0x97, 0xdc},  // Node 7
+    {0xa0, 0xdd, 0x6c, 0x03, 0x2f, 0x88}   // Node 8
 };
 
 uint8_t my_mac[6];
@@ -81,11 +97,6 @@ void espnow_init(void) {
 
 // Main
 void app_main(void) {
-    // Read MAC address
-    esp_read_mac(my_mac, ESP_MAC_WIFI_STA);
-    // semi-random wait timeout
-    uint32_t boot_stagger = my_mac[5] * 30;
-    vTaskDelay(boot_stagger / portTICK_PERIOD_MS);
     // NVS Init
     esp_err_t ret = nvs_flash_init();
     if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
@@ -96,6 +107,10 @@ void app_main(void) {
     // Turn on Wi-Fi
     wifi_init();
 	
+    uint32_t delay_ms = (esp_random() % 2000) + 5000;
+    vTaskDelay(pdMS_TO_TICKS(delay_ms));
+    
+    esp_read_mac(my_mac, ESP_MAC_WIFI_STA);
     espnow_init();
 
     uint32_t int_min = (uint32_t)MIN_VALUE;
