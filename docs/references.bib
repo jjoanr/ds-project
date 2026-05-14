@@ -1,0 +1,450 @@
+
+@article{gerencser_push-sum_2019,
+    title = {Push-{Sum} {With} {Transmission} {Failures}},
+    volume = {64},
+    issn = {1558-2523},
+    url = {https://ieeexplore.ieee.org/document/8359298/},
+    doi = {10.1109/TAC.2018.2836861},
+    abstract = {The push-sum algorithm allows distributed computing of the
+                average on a directed graph, and is particularly relevant when
+                one is restricted to one-way and/or asynchronous communications.
+                We investigate its behavior in the presence of unreliable
+                communication channels where messages can be lost. We show that
+                exponential convergence still holds and deduce fundamental
+                properties that implicitly describe the distribution of the final
+                value obtained. We analyze the error of the final common value we
+                get for the essential case of two nodes, both theoretically and
+                numerically. We provide performance comparison with a standard
+                consensus algorithm.},
+    number = {3},
+    urldate = {2026-04-07},
+    journal = {IEEE Transactions on Automatic Control},
+    author = {Gerencsér, Balázs and Hendrickx, Julien M.},
+    month = mar,
+    year = {2019},
+    keywords = {Asynchronous communication, automatic control, average consensus
+                , Communication channels, Convergence, Current measurement,
+                multi-agent systems, network theory (graphs), Optimization,
+                packet loss, push-sum, Random variables, Standards},
+    pages = {1019--1033},
+    file = {Full Text PDF:/home/joanr/Zotero/storage/4XLPNSM9/Gerencsér and
+            Hendrickx - 2019 - Push-Sum With Transmission
+            Failures.pdf:application/pdf},
+}
+
+@inproceedings{kempe_gossip-based_2003,
+    address = {Cambridge, MA, USA},
+    title = {Gossip-based computation of aggregate information},
+    isbn = {978-0-7695-2040-7},
+    url = {http://ieeexplore.ieee.org/document/1238221/},
+    doi = {10.1109/SFCS.2003.1238221},
+    abstract = {Over the last decade, we have seen a revolution in connectivity
+                between computers, and a resulting paradigm shift from
+                centralized to highly distributed systems. With massive scale
+                also comes massive instability, as node and link failures become
+                the norm rather than the exception. For such highly volatile
+                systems, decentralized gossip-based protocols are emerging as an
+                approach to maintaining simplicity and scalability while
+                achieving fault-tolerant information dissemination.},
+    language = {en},
+    urldate = {2026-04-15},
+    booktitle = {44th {Annual} {IEEE} {Symposium} on {Foundations} of {Computer}
+                 {Science}, 2003. {Proceedings}.},
+    publisher = {IEEE Computer. Soc},
+    author = {Kempe, D. and Dobra, A. and Gehrke, J.},
+    year = {2003},
+    pages = {482--491},
+    file = {PDF:/home/joanr/Zotero/storage/GRW57XB5/Kempe et al. - 2003 -
+            Gossip-based computation of aggregate information.pdf:application/pdf
+            },
+}
+
+@misc{liang_stability_2026,
+    title = {Stability and {Generalization} of {Push}-{Sum} {Based} {
+             Decentralized} {Optimization} over {Directed} {Graphs}},
+    url = {http://arxiv.org/abs/2602.20567},
+    doi = {10.48550/arXiv.2602.20567},
+    abstract = {Push-Sum-based decentralized learning enables optimization over
+                directed communication networks, where information exchange may
+                be asymmetric. While convergence properties of such methods are
+                well understood, their finite-iteration stability and
+                generalization behavior remain unclear due to structural bias
+                induced by column-stochastic mixing and asymmetric error
+                propagation. In this work, we develop a unified uniform-stability
+                framework for the Stochastic Gradient Push (SGP) algorithm that
+                captures the effect of directed topology. A key technical
+                ingredient is an imbalance-aware consistency bound for Push-Sum,
+                which controls consensus deviation through two quantities: the
+                stationary distribution imbalance parameter \$δ\$ and the
+                spectral gap \$(1-λ)\$ governing mixing speed. This decomposition
+                enables us to disentangle statistical effects from
+                topology-induced bias. We establish finite-iteration stability
+                and optimization guarantees for both convex objectives and
+                non-convex objectives satisfying the Polyak--Łojasiewicz
+                condition. For convex problems, SGP attains excess generalization
+                error of order \${\textbackslash}tilde\{{\textbackslash}mathcal\{
+                O\}\}{\textbackslash}!{\textbackslash}left({\textbackslash}frac\{
+                1\}\{{\textbackslash}sqrt\{mn\}\}+{\textbackslash}fracγ\{δ(1-λ)\}
+                +γ{\textbackslash}right)\$ under step-size schedules, and we
+                characterize the corresponding optimal early stopping time that
+                minimizes this bound. For PŁ objectives, we obtain convex-like
+                optimization and generalization rates with dominant dependence
+                proportional to \$κ{\textbackslash}!{\textbackslash}left(1+{
+                \textbackslash}frac\{1\}\{δ(1-λ)\}{\textbackslash}right)\$,
+                revealing a multiplicative coupling between problem conditioning
+                and directed communication topology. Our analysis clarifies when
+                Push-Sum correction is necessary compared with standard
+                decentralized SGD and quantifies how imbalance and mixing jointly
+                shape the best attainable learning performance.},
+    urldate = {2026-04-15},
+    publisher = {arXiv},
+    author = {Liang, Yifei and Sun, Yan and Cao, Xiaochun and Shen, Li},
+    month = feb,
+    year = {2026},
+    note = {arXiv:2602.20567 [cs]},
+    keywords = {Computer Science - Machine Learning, Statistics - Machine
+                Learning, Mathematics - Optimization and Control},
+    annote = {Comment: 47 Pages},
+    file = {Preprint PDF:/home/joanr/Zotero/storage/MTX7CEPM/Liang et al. - 2026
+            - Stability and Generalization of Push-Sum Based Decentralized
+            Optimization over Directed
+            Graphs.pdf:application/pdf;Snapshot:/home/joanr/Zotero/storage/RJ8TLXPS/2602.html:text/html
+            },
+}
+
+@incollection{charalambous_robustified_2026,
+    title = {Robustified {Distributed} {Average} {Consensus}},
+    copyright = {https://www.elsevier.com/tdm/userlicense/1.0/},
+    isbn = {978-0-443-14080-8},
+    url = {https://linkinghub.elsevier.com/retrieve/pii/B9780443140815000763},
+    doi = {10.1016/B978-0-443-14081-5.00076-3},
+    abstract = {Distributed average consensus is a key primitive for
+                accomplishing a variety of distributed estimation, control, and
+                optimization tasks in multi-agent systems. This article discusses
+                a popular class of such algorithms, as well as their application
+                to distributed control and optimization settings. The class of
+                algorithms we focus on operate in an iterative fashion: at each
+                iteration, each agent updates a set of locally held variables by
+                linearly combining them with similar values it receives from its
+                immediate neighboring agents; each agent then transmits its
+                updated values to its neighboring agents and the iteration
+                continues. Such linear iterative schemes have become popular due
+                to their simplicity and ease of implementation, however, they are
+                vulnerable to malfunctions or attacks in the commnunication
+                network on which their operation relies, or the agents
+                themselves. The article provides an overview of techniques for
+                robustifying these linear iterative schemes against network
+                abnormalities (e.g., packet delays or drops) and malfunctioning
+                agents (e.g., faulty or malicious agents).},
+    language = {en},
+    urldate = {2026-04-16},
+    booktitle = {Encyclopedia of {Systems} and {Control} {Engineering}},
+    publisher = {Elsevier},
+    author = {Charalambous, Themistoklis and Domínguez-García, Alejandro D. and
+              Hadjicostis, Christoforos N.},
+    year = {2026},
+    pages = {151--163},
+    file = {PDF:/home/joanr/Zotero/storage/JHKTDAME/Charalambous et al. - 2026 -
+            Robustified Distributed Average Consensus.pdf:application/pdf},
+}
+
+@incollection{almeida_fault-tolerant_2011,
+    title = {Fault-{Tolerant} {Aggregation}: {Flow}-{Updating} {Meets} {Mass}-{
+             Distribution}},
+    volume = {7109},
+    shorttitle = {Fault-{Tolerant} {Aggregation}},
+    url = {http://arxiv.org/abs/1109.4373},
+    doi = {10.1007/978-3-642-25873-2_35},
+    abstract = {Flow-Updating (FU) is a fault-tolerant technique that has proved
+                to be efficient in practice for the distributed computation of
+                aggregate functions in communication networks where individual
+                processors do not have access to global information. Previous
+                distributed aggregation protocols, based on repeated sharing of
+                input values (or mass) among processors, sometimes called
+                Mass-Distribution (MD) protocols, are not resilient to
+                communication failures (or message loss) because such failures
+                yield a loss of mass. In this paper, we present a protocol which
+                we call Mass-Distribution with Flow-Updating (MDFU). We obtain
+                MDFU by applying FU techniques to classic MD. We analyze the
+                convergence time of MDFU showing that stochastic message loss
+                produces low overhead. This is the first convergence proof of an
+                FU-based algorithm. We evaluate MDFU experimentally, comparing it
+                with previous MD and FU protocols, and verifying the behavior
+                predicted by the analysis. Finally, given that MDFU incurs a
+                fixed deviation proportional to the message-loss rate, we adjust
+                the accuracy of MDFU heuristically in a new protocol called MDFU
+                with Linear Prediction (MDFU-LP). The evaluation shows that both
+                MDFU and MDFU-LP behave very well in practice, even under high
+                rates of message loss and even changing the input values
+                dynamically.},
+    urldate = {2026-04-23},
+    author = {Almeida, Paulo S. and Baquero, Carlos and Farach-Colton, Martin
+              and Jesus, Paulo and Mosteiro, Miguel A.},
+    year = {2011},
+    note = {arXiv:1109.4373 [cs]},
+    keywords = {Computer Science - Data Structures and Algorithms, Computer
+                Science - Distributed, Parallel, and Cluster Computing},
+    pages = {513--527},
+    annote = {Comment: 18 pages, 5 figures, To appear in OPODIS 2011},
+    file = {Preprint PDF:/home/joanr/Zotero/storage/A589TRGD/Almeida et al. -
+            2011 - Fault-Tolerant Aggregation Flow-Updating Meets
+            Mass-Distribution.pdf:application/pdf;Snapshot:/home/joanr/Zotero/storage/6WNFMX6K/1109.html:text/html
+            },
+}
+
+@article{nedic_distributed_2015,
+    title = {Distributed {Optimization} {Over} {Time}-{Varying} {Directed} {
+             Graphs}},
+    volume = {60},
+    issn = {1558-2523},
+    url = {https://ieeexplore.ieee.org/document/6930814/citations},
+    doi = {10.1109/TAC.2014.2364096},
+    abstract = {We consider distributed optimization by a collection of nodes,
+                each having access to its own convex function, whose collective
+                goal is to minimize the sum of the functions. The communications
+                between nodes are described by a time-varying sequence of
+                directed graphs, which is uniformly strongly connected. For such
+                communications, assuming that every node knows its out-degree, we
+                develop a broadcast-based algorithm, termed the subgradient-push,
+                which steers every node to an optimal value under a standard
+                assumption of subgradient boundedness. The subgradient-push
+                requires no knowledge of either the number of agents or the graph
+                sequence to implement. Our analysis shows that the
+                subgradient-push algorithm converges at a rate of O(łn t/{
+                \textbackslash}sqrtt ) . The proportionality constant in the
+                convergence rate depends on the initial values at the nodes, the
+                subgradient norms and, more interestingly, on both the speed of
+                the network information diffusion and the imbalances of influence
+                among the nodes.},
+    number = {3},
+    urldate = {2026-04-27},
+    journal = {IEEE Transactions on Automatic Control},
+    author = {Nedić, Angelia and Olshevsky, Alex},
+    month = mar,
+    year = {2015},
+    keywords = {Convergence, Convex functions, Equations, Optimization,
+                Protocols, Standards, Time-varying, UAVs, Vectors},
+    pages = {601--615},
+    file = {Full Text PDF:/home/joanr/Zotero/storage/5PJGE8GI/Nedić and
+            Olshevsky - 2015 - Distributed Optimization Over Time-Varying
+            Directed Graphs.pdf:application/pdf},
+}
+
+@inproceedings{assran_stochastic_2019,
+    title = {Stochastic {Gradient} {Push} for {Distributed} {Deep} {Learning}},
+    issn = {2640-3498},
+    url = {https://proceedings.mlr.press/v97/assran19a.html},
+    abstract = {Distributed data-parallel algorithms aim to accelerate the
+                training of deep neural networks by parallelizing the computation
+                of large mini-batch gradient updates across multiple nodes.
+                Approaches that synchronize nodes using exact distributed
+                averaging (e.g., via AllReduce) are sensitive to stragglers and
+                communication delays. The PushSum gossip algorithm is robust to
+                these issues, but only performs approximate distributed
+                averaging. This paper studies Stochastic Gradient Push (SGP),
+                which combines PushSum with stochastic gradient updates. We prove
+                that SGP converges to a stationary point of smooth, non-convex
+                objectives at the same sub-linear rate as SGD, and that all nodes
+                achieve consensus. We empirically validate the performance of SGP
+                on image classification (ResNet-50, ImageNet) and machine
+                translation (Transformer, WMT’16 En-De) workloads.},
+    language = {en},
+    urldate = {2026-04-27},
+    booktitle = {Proceedings of the 36th {International} {Conference} on {
+                 Machine} {Learning}},
+    publisher = {PMLR},
+    author = {Assran, Mahmoud and Loizou, Nicolas and Ballas, Nicolas and Rabbat
+              , Mike},
+    month = may,
+    year = {2019},
+    pages = {344--353},
+    file = {Full Text PDF:/home/joanr/Zotero/storage/EBLZG2DB/Assran et al. -
+            2019 - Stochastic Gradient Push for Distributed Deep
+            Learning.pdf:application/pdf;Supplementary
+            PDF:/home/joanr/Zotero/storage/CR6ZV3W2/Assran et al. - 2019 -
+            Stochastic Gradient Push for Distributed Deep
+            Learning.pdf:application/pdf},
+}
+
+@inproceedings{eridani_comparative_2021,
+    title = {Comparative {Performance} {Study} of {ESP}-{NOW}, {Wi}-{Fi}, {
+             Bluetooth} {Protocols} based on {Range}, {Transmission} {Speed}, {
+             Latency}, {Energy} {Usage} and {Barrier} {Resistance}},
+    url = {https://ieeexplore.ieee.org/document/9573246/},
+    doi = {10.1109/iSemantic52711.2021.9573246},
+    abstract = {This paper discusses and provides comparison results of ESP-NOW,
+                Wi-Fi, and Bluetooth as wireless local area network protocols.
+                These protocols have been widely implemented on IoT devices.
+                Inconsequential use of these protocols in areas that are not
+                appropriate according to the characteristics of the protocols
+                will cause problems such as fast battery drain, transmission
+                speed is too wide with small data sent, and so on. For this
+                reason, it is important to conduct a comparative study, to obtain
+                information on the performance comparison of each protocol. We
+                hope that IoT system designers can make it as a reference in the
+                selection of these protocols. This paper will compare each
+                protocol from the point of view of point-to-point transmission
+                using key performance indicators such as maximum range,
+                transmission speed, latency, power consumption, and resistance to
+                obstructions using built-in and external antennas. Experiments
+                were done with an equivalent testing method using the same
+                components or tools. The data obtained were used to compare each
+                protocol using a descriptive quantitative method by presenting
+                the data in numerical, graphical, or descriptive form. The
+                results of this paper are expected to be used as a consideration
+                for which protocol is suitable for its implementation by
+                providing an overview of the advantages and disadvantages of each
+                protocol. A brief analysis of suitable applications for each
+                protocol is provided.},
+    urldate = {2026-05-05},
+    booktitle = {2021 {International} {Seminar} on {Application} for {Technology
+                 } of {Information} and {Communication} ({iSemantic})},
+    author = {Eridani, Dania and Rochim, Adian Fatchur and Cesara, Faiz
+              Noerdiyan},
+    month = sep,
+    year = {2021},
+    keywords = {Bluetooth, Comparison, ESP-NOW, Internet of Things, Key
+                performance indicator, Power demand, Protocols, Resistance, Tools
+                , Transmitting antennas, Wi-Fi},
+    pages = {322--328},
+    file = {Full Text PDF:/home/joanr/Zotero/storage/FUNY6VVX/Eridani et al. -
+            2021 - Comparative Performance Study of ESP-NOW, Wi-Fi, Bluetooth
+            Protocols based on Range, Transmission Sp.pdf:application/pdf},
+}
+
+
+@inproceedings{becker_esp-now_2025,
+    title = {{ESP}-{NOW} {Performance} in {Outdoor} {Environments}: {Field} {
+             Experiments} and {Analysis}},
+    issn = {2688-4909},
+    shorttitle = {{ESP}-{NOW} {Performance} in {Outdoor} {Environments}},
+    url = {https://ieeexplore.ieee.org/document/10925988/},
+    abstract = {The Internet of Things plays a crucial role in various fields,
+                such as smart homes, agriculture, and natural disaster
+                prediction. Data typically needs to be transmitted wirelessly to
+                base stations, with each application having its individual
+                Quality of Service requirements. In this work, we provide a
+                better understanding of the functioning of ESP-NOW at the lower
+                layers and the resulting performance of the protocol under
+                real-world conditions. For this, we conduct experiments under
+                controlled conditions with the widely used Heltec WiFi LoRa 32 V3
+                board. We further conduct experiments in two typical outdoor
+                environments to assess performance under real-world conditions:
+                farmland under line-of-sight conditions with measurements taken
+                at 21 positions and a forest environment with measurements taken
+                at 205 positions. Special emphasis is placed on the packet
+                delivery ratio and the distribution of delays. Finally, we
+                demonstrate that the delay distributions from the outdoor
+                experiments match a model derived from our experiments on ESP-NOW
+                under controlled conditions.},
+    urldate = {2026-05-05},
+    booktitle = {2025 20th {Wireless} {On}-{Demand} {Network} {Systems} and {
+                 Services} {Conference} ({WONS})},
+    author = {Becker, Benjamin and Oberli, Christian and Zobel, Julian and
+              Steinmetz, Ralf and Meuser, Tobias},
+    month = jan,
+    year = {2025},
+    note = {ISSN: 2688-4909},
+    keywords = {Adaptation models, Delays, Electromagnetic interference, ESP-NOW
+                , Field-Study, Forestry, Jitter, LoRa, Modeling, One Way Delay,
+                Performance, Position measurement, Predictive models, Protocols,
+                Wireless fidelity},
+    pages = {1--8},
+    file = {Full Text PDF:/home/joanr/Zotero/storage/2397XK4G/Becker et al. -
+            2025 - ESP-NOW Performance in Outdoor Environments Field Experiments
+            and Analysis.pdf:application/pdf},
+}
+
+
+@article{nguyen_federated_2021,
+    title = {Federated {Learning} for {Internet} of {Things}: {A} {Comprehensive
+             } {Survey}},
+    volume = {23},
+    issn = {1553-877X},
+    shorttitle = {Federated {Learning} for {Internet} of {Things}},
+    url = {https://ieeexplore.ieee.org/document/9415623},
+    doi = {10.1109/COMST.2021.3075439},
+    abstract = {The Internet of Things (IoT) is penetrating many facets of our
+                daily life with the proliferation of intelligent services and
+                applications empowered by artificial intelligence (AI).
+                Traditionally, AI techniques require centralized data collection
+                and processing that may not be feasible in realistic application
+                scenarios due to the high scalability of modern IoT networks and
+                growing data privacy concerns. Federated Learning (FL) has
+                emerged as a distributed collaborative AI approach that can
+                enable many intelligent IoT applications, by allowing for AI
+                training at distributed IoT devices without the need for data
+                sharing. In this article, we provide a comprehensive survey of
+                the emerging applications of FL in IoT networks, beginning from
+                an introduction to the recent advances in FL and IoT to a
+                discussion of their integration. Particularly, we explore and
+                analyze the potential of FL for enabling a wide range of IoT
+                services, including IoT data sharing, data offloading and caching
+                , attack detection, localization, mobile crowdsensing, and IoT
+                privacy and security. We then provide an extensive survey of the
+                use of FL in various key IoT applications such as smart
+                healthcare, smart transportation, Unmanned Aerial Vehicles (UAVs)
+                , smart cities, and smart industry. The important lessons learned
+                from this review of the FL-IoT services and applications are also
+                highlighted. We complete this survey by highlighting the current
+                challenges and possible directions for future research in this
+                booming area.},
+    number = {3},
+    urldate = {2026-05-05},
+    journal = {IEEE Communications Surveys \& Tutorials},
+    author = {Nguyen, Dinh C. and Ding, Ming and Pathirana, Pubudu N. and
+              Seneviratne, Aruna and Li, Jun and Vincent Poor, H.},
+    year = {2021},
+    keywords = {artificial intelligence, Computational modeling, Computer
+                architecture, Data models, Data privacy, Federated learning,
+                Internet of Things, machine learning, Medical services, privacy,
+                Training},
+    pages = {1622--1658},
+    file = {Full Text PDF:/home/joanr/Zotero/storage/RDGFH2R5/Nguyen et al. -
+            2021 - Federated Learning for Internet of Things A Comprehensive
+            Survey.pdf:application/pdf},
+}
+
+@article{tang_gossipfl_2023,
+    title = {{GossipFL}: {A} {Decentralized} {Federated} {Learning} {Framework}
+             {With} {Sparsified} and {Adaptive} {Communication}},
+    volume = {34},
+    issn = {1558-2183},
+    shorttitle = {{GossipFL}},
+    url = {https://ieeexplore.ieee.org/document/9996127},
+    doi = {10.1109/TPDS.2022.3230938},
+    abstract = {Recently, federated learning (FL) techniques have enabled
+                multiple users to train machine learning models collaboratively
+                without data sharing. However, existing FL algorithms suffer from
+                the communication bottleneck due to network bandwidth pressure
+                and/or low bandwidth utilization of the participating clients in
+                both centralized and decentralized architectures. To deal with
+                the communication problem while preserving the convergence
+                performance, we introduce a communication-efficient decentralized
+                FL framework GossipFL. In GossipFL, we 1) design a novel
+                sparsification algorithm to enable that each client only needs to
+                communicate with one peer with a highly sparsified model, and 2)
+                propose a new and novel gossip matrix generation algorithm that
+                can better utilize the bandwidth resources while preserving the
+                convergence property. We also theoretically prove that GossipFL
+                has convergence guarantees. We conduct experiments with three
+                convolutional neural networks on two datasets (IID and non-IID)
+                under two distributed environments (14 clients and 100 clients)
+                to verify the effectiveness of GossipFL. Experimental results
+                show that GossipFL takes less communication traffic for 38.5\%
+                and less communication time for 49.849.8\% than state-of-the-art
+                solutions while achieving comparative model accuracy.},
+    number = {3},
+    urldate = {2026-05-05},
+    journal = {IEEE Transactions on Parallel and Distributed Systems},
+    author = {Tang, Zhenheng and Shi, Shaohuai and Li, Bo and Chu, Xiaowen},
+    month = mar,
+    year = {2023},
+    keywords = {Bandwidth, communication efficiency, Convergence, Data models,
+                Deep learning, federated learning, Federated learning, Servers,
+                Topology, Training},
+    pages = {909--922},
+    file = {Full Text PDF:/home/joanr/Zotero/storage/KYHXPNTM/Tang et al. - 2023
+            - GossipFL A Decentralized Federated Learning Framework With
+            Sparsified and Adaptive Communication.pdf:application/pdf},
+}
